@@ -39,7 +39,7 @@ This ASP.NET Core MVC project integrates with **Google Workspace APIs** to demon
 
 ## ⚙️ Setup Instructions
 
-### 1. Configure Google Cloud Project
+### 1. 🔐 Configure Google Cloud Project
 - Go to [Google Cloud Console](https://console.cloud.google.com)
 - Create a new project and enable:
   - Google Sheets API
@@ -47,7 +47,7 @@ This ASP.NET Core MVC project integrates with **Google Workspace APIs** to demon
 - Create **OAuth 2.0 credentials**
   - Authorized redirect URI: `https://localhost:5109/signin-google`
 
-### 2. Update `appsettings.json`
+### 2. 🔑 Update `appsettings.json`
 
 ```json
 "Authentication": {
@@ -59,7 +59,34 @@ This ASP.NET Core MVC project integrates with **Google Workspace APIs** to demon
 "Google": {
   "SpreadsheetId": "YOUR_SPREADSHEET_ID"
 }
-### 3. Run the Project
+```
+
+### 3. 🔄 Run the Project
+
+```bash
 dotnet restore
 dotnet build
 dotnet run
+```
+
+Visit `https://localhost:5109` in your browser.
+
+---
+
+## 💡 How It Works
+
+- On login, OAuth token is stored.
+- Gmail controller uses the token to send email via `GoogleGmailService`.
+- Sheets controller uses the token to fetch first 5 rows via `GoogleSheetsService`.
+
+---
+
+## ✅ Sample Use Case
+
+1. Log in with your Google account
+2. View the first 5 rows of a configured Google Sheet
+3. Send a test email from your Gmail account to a test recipient
+
+---
+
+
